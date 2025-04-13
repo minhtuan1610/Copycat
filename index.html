@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Cat</title>
+    <link rel="stylesheet" href="style/styles.css" />
+    <script src='lib/jquery-3.7.1.min.js' defer></script>
+</head>
+
+<body>
+    <div>
+        <label><input type="text" placeholder="Keyword"></label>
+        <label><input type="text" placeholder="Content"></label>
+        <button onclick="">Add</button>
+        <label><input type="text" placeholder="Content"></label>
+        <button onclick="">Search</button>
+    </div>
+    <div>
+        <label><input type="text" id="myInput"></label>
+        <button onclick="copyContent()">Copy text</button>
+        <textarea id="textarea_1" readonly>"dev-win": npm run build</textarea>
+        <button onclick="copyToClipBoard('textarea_1')">Copy text</button>
+    </div>
+</body>
+
+<script src="scripts/script.js"></script>
+
+</html>

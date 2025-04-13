@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Copy Text UI</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3f4f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        input {
+            width: 300px;
+            padding: 10px 12px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        input:focus {
+            border-color: #6366f1;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #4f46e5;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #10b981;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>✂️ Copy This Cool Text</h2>
+
+    <input type="text" value="You’re awesome! 🚀" id="myInput">
+    <button onclick="copyContent()">Copy Text</button>
+
+    <div id="toast" class="toast">Copied to clipboard!</div>
+
+    <script>
+        function copyContent() {
+            const copyText = document.getElementById("myInput");
+            copyText.select();
+
+            navigator.clipboard.writeText(copyText.value)
+                .then(() => showToast("Copied to clipboard!"))
+                .catch(err => {
+                    console.error("Failed to copy:", err);
+                    showToast("Copy failed 😢", true);
+                });
+        }
+
+        function showToast(message, isError = false) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.style.backgroundColor = isError ? '#ef4444' : '#10b981';
+            toast.classList.add("show");
+
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 2000);
+        }
+    </script>
+
+</body>
+
+</html>
